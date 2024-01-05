@@ -1,0 +1,35 @@
+[
+    {
+      "Imagen": "ruta/imagen1.jpg",
+      "Nombre": "Producto 1",
+      "Código": "P001",
+      "Marca": "Marca A",
+      "Categoría": "Electrónicos",
+      "Costo": 50.00,
+      "Unidad": "Pieza",
+      "Precio": 80.00,
+      "Cortesia": false
+    },
+    {
+      "Imagen": "ruta/imagen2.jpg",
+      "Nombre": "Producto 2",
+      "Código": "P002",
+      "Marca": "Marca B",
+      "Categoría": "Ropa",
+      "Costo": 30.00,
+      "Unidad": "Par",
+      "Precio": 45.00,
+      "Cortesia": true
+    },
+    {
+      "Imagen": "ruta/imagen3.jpg",
+      "Nombre": "Producto 3",
+      "Código": "P003",
+      "Marca": "Marca C",
+      "Categoría": "Hogar",
+      "Costo": 20.00,
+      "Unidad": "Litro",
+      "Precio": 30.00,
+      "Cortesia": false
+    }
+  ]
