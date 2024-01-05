@@ -49,6 +49,45 @@ function Tabla() {
               "Precio": 185.00,
               "Debido": 0,
               "Cortesia": false
+            },
+            {
+              "Imagen": "ruta/imagen3.jpg",
+              "Fecha": "12-22-2024",
+              "Nombre": "NRV-0000522",
+              "Código": "Pozitos",
+              "Marca": "Clientes Varios",
+              "Categoría": "Terminado",
+              "Costo": "Pagado",
+              "Unidad": 185.00,
+              "Precio": 185.00,
+              "Debido": 0,
+              "Cortesia": false
+            },
+            {
+              "Imagen": "ruta/imagen3.jpg",
+              "Fecha": "12-22-2024",
+              "Nombre": "NRV-0000522",
+              "Código": "Pozitos",
+              "Marca": "Clientes Varios",
+              "Categoría": "Terminado",
+              "Costo": "Pagado",
+              "Unidad": 185.00,
+              "Precio": 185.00,
+              "Debido": 0,
+              "Cortesia": false
+            },
+            {
+              "Imagen": "ruta/imagen3.jpg",
+              "Fecha": "12-22-2024",
+              "Nombre": "NRV-0000522",
+              "Código": "Pozitos",
+              "Marca": "Clientes Varios",
+              "Categoría": "Terminado",
+              "Costo": "Pagado",
+              "Unidad": 185.00,
+              "Precio": 185.00,
+              "Debido": 0,
+              "Cortesia": false
             }
     ]
 
@@ -164,7 +203,7 @@ function Tabla() {
                 {data_falsa_json.map((producto, index) => (
                     <tr key={index}>
                         <td className='pl-4'>
-                            <input type="checkbox" id="miCheckbox" name="miCheckbox"></input>
+                            <input className='hover:cursor-pointer' type="checkbox" id="miCheckbox" name="miCheckbox"></input>
                             <label for="miCheckbox"></label>
                         </td>
 
