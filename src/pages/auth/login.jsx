@@ -21,13 +21,13 @@ export function Login() {
     <section
       className="h-screen grid place-items-center w-full bg-gradient-to-r from-blue-900 via-blue-600 to-blue-400 dark:from-gray-900 dark:via-gray-600 dark:to-gray-400 dark:bg-gradient-to-r"
     >
-      <div className="w-full abolute h-screen grid place-items-center bg-opacity-20 bg-blue-900 dark:bg-gray-900 dark:bg-opacity-50 transition-all duration-1000 ease-in-out">
+      <div className="w-full abolute h-full grid place-items-center bg-opacity-20 bg-blue-900 dark:bg-gray-900 dark:bg-opacity-50 transition-all duration-1000 ease-in-out">
         <form
           onSubmit={handleSubmit}
-          className="bg-[#fff5d2] flex flex-col justify-center md:justify-between h-full md:h-fit w-full md:w-96 p-10 md:p-10 border-0 md:border border-gray-400 md:rounded-3xl"
+          className="bg-[#fff5d2] flex flex-col justify-center md:justify-between h-full md:h-fit w-full md:w-96 p-10 md:p-8 border-0 md:border border-gray-400 md:rounded-3xl"
         >
           <div className="overflow-hidden rounded-3xl">
-            <img className="scale-150" src={logo} alt="logo" />
+            <img className="scale-90" src={logo} alt="logo" />
           </div>
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="small" color="blue-gray" className="-mb-3 mt-0 font-medium text-center">
@@ -91,8 +91,7 @@ export function Login() {
         <div className="hidden w-3/12 lg:block">
         <div className="h-full w-full object-cover p-6 rounded-3xl text-center bg-[#fff5d2]">
           <li className="flex justify-center">admin@mail.com <p>&#160; PASS: 1234</p></li>
-          <li className="flex justify-center">maestro@mail.com <p>&#160; PASS: 1234</p></li>
-          <li className="flex justify-center">alumno@mail.com<p>&#160; PASS: 1234</p></li>
+          <li className="flex justify-center">vendedor@mail.com <p>&#160; PASS: 1234</p></li>
         </div>
       </div>
       </div>
