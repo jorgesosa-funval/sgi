@@ -7,8 +7,9 @@ import {
 import { useUniversityContext } from "../../context/UniversityProvider";
 import logo from "../../assets/logo.png";
 //import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import useDarkMode from "../../service/useDarkMode";
+import authService from "@/service/auth.service";
 
 export function Login() {
 
@@ -17,14 +18,36 @@ export function Login() {
   const DarkMode = useDarkMode(iconRef);
   sessionStorage.setItem("rol", rol);
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) =>{
+    e.preventDefault();
+    try{
+      await authService.login(email,password).then(
+        ()=>{
+          window.location.reload();
+        },
+        (error) =>{
+          console.log(error);
+        }
+      )
+    } catch (err){
+      console.log(err)
+    }
+  }
+
   return (
     <section
       className="h-screen grid place-items-center w-full bg-gradient-to-r from-blue-900 via-blue-600 to-blue-400 dark:from-gray-900 dark:via-gray-600 dark:to-gray-400 dark:bg-gradient-to-r"
     >
       <div className="w-full abolute h-full grid place-items-center bg-opacity-20 bg-blue-900 dark:bg-gray-900 dark:bg-opacity-50 transition-all duration-1000 ease-in-out">
         <form
-          onSubmit={handleSubmit}
-          className="bg-[#fff5d2] flex flex-col justify-center md:justify-between h-full md:h-fit w-full md:w-96 p-10 md:p-8 border-0 md:border border-gray-400 md:rounded-3xl"
+onSubmit={(e) => {
+  e.preventDefault();
+  handleSubmit();
+  handleLogin();
+}}          className="bg-[#fff5d2] flex flex-col justify-center md:justify-between h-full md:h-fit w-full md:w-96 p-10 md:p-8 border-0 md:border border-gray-400 md:rounded-3xl"
         >
           <div className="overflow-hidden rounded-3xl">
             <img className="scale-90" src={logo} alt="logo" />
@@ -40,7 +63,10 @@ export function Login() {
               type="email"
               id="correo"
               value={correo}
-              onChange={(e) => setCorreo(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setCorreo(e.target.value);
+              }}   
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -51,7 +77,10 @@ export function Login() {
               placeholder="********"
               id="contrasena"
               value={contrasena}
-              onChange={(e) => setContrasena(e.target.value)}
+              onChange={(e) => {
+                setContrasena(e.target.value);
+                setPassword(e.target.value);
+              }}              
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
