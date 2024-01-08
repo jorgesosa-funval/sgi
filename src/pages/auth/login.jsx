@@ -4,7 +4,7 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { useUniversityContext } from "../../context/UniversityProvider";
+import { useSgiMarketContext } from "../../context/SGIProvider";
 import logo from "../../assets/logo.png";
 //import { Link } from "react-router-dom";
 import { useRef } from "react";
@@ -12,7 +12,7 @@ import useDarkMode from "../../service/useDarkMode";
 
 export function Login() {
 
-  const { setCorreo, setContrasena, error, handleSubmit, correo, contrasena, rol} = useUniversityContext();
+  const { setCorreo, setContrasena, error, handleSubmit, correo, contrasena, rol} = useSgiMarketContext();
   const iconRef = useRef(null);
   const DarkMode = useDarkMode(iconRef);
   sessionStorage.setItem("rol", rol);
@@ -27,7 +27,7 @@ export function Login() {
           className="bg-[#fff5d2] flex flex-col justify-center md:justify-between h-full md:h-fit w-full md:w-96 p-10 md:p-10 border-0 md:border border-gray-400 md:rounded-3xl"
         >
           <div className="overflow-hidden rounded-3xl">
-            <img className="scale-150" src={logo} alt="logo" />
+            <img className="scale-100" src={logo} alt="logo" />
           </div>
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="small" color="blue-gray" className="-mb-3 mt-0 font-medium text-center">

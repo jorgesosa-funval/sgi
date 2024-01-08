@@ -23,15 +23,14 @@ import {
   setOpenConfigurator,
   setOpenSidenav,
 } from "@/context";
-import { useUniversityContext } from "../../context/UniversityProvider";
+//import { useUniversityContext } from "../../context/UniversityProvider";
 
 export function DashboardNavbar() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { fixedNavbar, openSidenav } = controller;
   const { pathname } = useLocation();
   const [layout, page] = pathname.split("/").filter((el) => el !== "");
-  const { usuario } = useUniversityContext();
-
+  //const { usuario } = useUniversityContext();
   //console.log(page)
 
   return (
@@ -80,7 +79,7 @@ export function DashboardNavbar() {
             color="blue-gray"
             className="font-normal opacity-80 transition-all hover:text-blue-900 hover:opacity-100 mr-2"
           >
-            {usuario[0]?.nombre}
+            "Nombre Usuario"
           </Typography>
           <IconButton
             variant="text"

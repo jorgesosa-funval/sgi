@@ -7,13 +7,14 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useMaterialTailwindController, setOpenSidenav } from "@/context";
-import { useUniversityContext } from "../../context/UniversityProvider";
-import logoU from "../../assets/logoU.jpg"
+//import { useSgiMarketContext } from "../../context/SGIProvider";
+import logoU from "../../assets/logoU.png"
 
 export function Sidenav({ brandName, routes }) {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavColor, sidenavType, openSidenav } = controller;
-  const { usuario, catergoria, rol } = useUniversityContext();
+  const rolSeccion = parseInt(sessionStorage.getItem("rol"));
+  //const { rol } = useSgiMarketContext();
   const sidenavTypes = {
     dark: "bg-gradient-to-br from-gray-800 to-gray-900",
     white: "bg-white shadow-sm",
@@ -35,9 +36,9 @@ export function Sidenav({ brandName, routes }) {
             color={sidenavType === "dark" ? "white" : "blue-gray"}
           >
             <div class="flex  h-12 w-12 rounded-full overflow-hidden">
-              {/* <img class="h-12 w-12" src={logoU} alt="LogoUni.jpg" /> */}
+                <img class="h-12 w-12" src={logoU} alt="LogoUni.jpg" /> 
             </div>
-            <p className="ml-5">punto venta</p>
+            <p className="ml-5">SGI MARKET +</p>
           </Typography>
         </Link>
         <hr />
@@ -46,7 +47,7 @@ export function Sidenav({ brandName, routes }) {
             color={sidenavType === "dark" ? "white" : "blue-gray"}
             className="font-medium pt-3 flex opacity-75 items-center gap-4 px-4 capitalize"
           >
-            {catergoria}
+            "Permisos de Usuario"
           </Typography>
 
           <Typography
@@ -54,7 +55,7 @@ export function Sidenav({ brandName, routes }) {
             color={sidenavType === "dark" ? "white" : "blue-gray"}
             className="opacity-75 font-normal capitalize flex items-center gap-4 px-4 mb-4"
           >
-            {usuario[0]?.nombre} {usuario[0]?.apellido}
+            "Nombre de Usuario"
           </Typography>
           <hr />
         </div>
@@ -72,7 +73,7 @@ export function Sidenav({ brandName, routes }) {
       <div className="m-4">
         {routes.map(({ layout, title, pages }) => {
           // Filtra las páginas según el rol del usuario
-          const filteredPages = pages.filter((page) => page.rol === rol);
+          const filteredPages = pages.filter((page) => page.rol === rolSeccion);
           // Si no hay páginas que coincidan con el rol, no renderiza nada para esta categoría
           if (filteredPages.length === 0) {
             return null;
@@ -127,7 +128,7 @@ export function Sidenav({ brandName, routes }) {
 }
 
 Sidenav.defaultProps = {
-  brandName: "Universidad",
+  brandName: "SGI Market +",
 };
 
 Sidenav.propTypes = {

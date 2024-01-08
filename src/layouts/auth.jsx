@@ -9,6 +9,11 @@ import routes from "@/routes";
 export function Auth() {
   const navbarRoutes = [
     {
+      name: "login",
+      path: "/auth/login",
+      icon: ArrowRightOnRectangleIcon,
+    },
+    {
       name: "dashboard",
       path: "/dashboard/home",
       icon: ChartPieIcon,
@@ -17,11 +22,6 @@ export function Auth() {
       name: "profile",
       path: "/dashboard/home",
       icon: UserIcon,
-    },
-    {
-      name: "login",
-      path: "/auth/login",
-      icon: ArrowRightOnRectangleIcon,
     },
   ];
 

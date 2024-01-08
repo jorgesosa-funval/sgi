@@ -11,11 +11,12 @@ import {
 import routes from "@/routes";
 import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
 import { useNavigate } from "react-router-dom";
-import { useUniversityContext } from "../context/UniversityProvider";
+import { useSgiMarketContext } from "../context/SGIProvider";
 
 export function Dashboard() {
-  const { seccion, rol } = useUniversityContext();
-  sessionStorage.setItem("rol", rol);
+  const { seccion } = useSgiMarketContext();
+  const rolSeccion = parseInt(sessionStorage.getItem("rol"));
+  //sessionStorage.setItem("rol", 1);
   const [controller, dispatch] = useMaterialTailwindController();
   const token = localStorage.getItem("token");
   const { sidenavType } = controller;
@@ -27,15 +28,15 @@ export function Dashboard() {
   const body = document.body;
 
   if (!token) {
-    navigate("/auth/sign-in");
+    navigate("/auth/login");
   } else if (seccionClose === seccion) {
-    navigate("/auth/sign-in");
+    navigate("/auth/login");
   } else if (seccionExp === seccion) {
-    navigate("/auth/sign-in");
+    navigate("/auth/login");
   } else if (seccionRol === seccion) {
-    navigate("/auth/sign-in");
+    navigate("/auth/login");
   } else if (condicion === seccion) {
-    navigate("/auth/sign-in");
+    navigate("/auth/login");
   }
 
   if (sidenavType === "white") {
@@ -50,6 +51,8 @@ export function Dashboard() {
   }
 
   localStorage.setItem("theme", sidenavType);
+  // console.log("comprasAll");
+  // console.log(comprasAll);
 
   return (
     <div id='modoOzcuro' className="bg-gradient-to-r from-blue-300 via-blue-200 to-blue-100 dark:from-gray-400 dark:via-gray-200 dark:to-gray-100 dark:bg-gradient-to-r">
@@ -74,7 +77,7 @@ export function Dashboard() {
               ({ layout, pages }) =>
                 layout === "dashboard" &&
                 pages
-                  .filter((page) => page.rol === rol)
+                  .filter((page) => page.rol === rolSeccion)
                   .map(({ path, element }) => (
                     <Route
                       exact
