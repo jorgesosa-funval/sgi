@@ -93,11 +93,15 @@ function Tabla() {
 
     const [datos, setDatos] = useState([]);
 
+
     useEffect(() => {
+        
         const fetchData = async () => {
           try {
-            const response = await fetch('/tabla_productos_meg/data_falsa.json');
+            const response = await fetch('http://127.0.0.1:8000/api/productosventas');
             const data = await response.json();
+            console.log("Aqui deberia verse la informacion del usuario")
+            console.log(data);
             setDatos(data);
           } catch (error) {
             console.error('Error al cargar el archivo JSON:', error);
@@ -109,7 +113,7 @@ function Tabla() {
     
     function añadirVenta(){
         console.log('Boton de añadir producto')
-        console.log(data_falsa_json)
+        console.log(datos)
     }
     function borrar(){
         console.log('Borrar')
@@ -186,10 +190,10 @@ function Tabla() {
                     </td>
                     <td>Fecha</td>
                     <td className='flex f'>Nro. Venta/Factura</td>
-                    <td>Vendedor/Facturador / Persona Servicio</td>
+                    <td>Producto Id</td>
                     <td>Cliente</td>
-                    <td>Estado de venta</td>
-                    <td>Estado de pago</td>
+                    <td>Cantidad vendida</td>
+                    <td>Costo</td>
                     <td className='pr-2'>Total</td>
                     <td className='pr-2'>Pagado</td>
                     <td className='pr-2'>Debido</td>
@@ -200,7 +204,7 @@ function Tabla() {
             </thead>
             
             <tbody>
-                {data_falsa_json.map((producto, index) => (
+                {datos.map((producto, index) => (
                     <tr key={index}>
                         <td className='pl-4'>
                             <input className='hover:cursor-pointer' type="checkbox" id="miCheckbox" name="miCheckbox"></input>
@@ -210,22 +214,22 @@ function Tabla() {
                         {/* Aqui abajo es en donde se puede llegar a renderizar una imagen */}
 
                         {/* <td><img src={producto.Imagen} alt={producto.Nombre} width="50" /></td> */}
-                        <td>{producto.Fecha}</td>
-                        <td>{producto.Nombre}</td>
-                        <td>{producto.Código}</td>
-                        <td>{producto.Marca}</td>
+                        <td>{producto.fechaVenta}</td>
+                        <td>{producto.venta_id}</td>
+                        <td>{producto.producto_id}</td>
+                        <td>{producto.id}</td>
                         <td>
                             <p  className='bg-[#4c4949e8] text-slate-50 rounded-md font-medium mx-[14px] text-sm'>
-                                {producto.Categoría}
+                                {producto.cantidadVendida}
                             </p>
                         </td>
                         <td>
                             <p className='bg-[#4c4949e8] text-slate-50 rounded-md font-medium mx-[20px] text-sm'>
-                                {producto.Costo}
+                                {producto.costo}
                             </p>
                         </td>
-                        <td>{producto.Unidad}</td>
-                        <td>{producto.Precio}</td>
+                        <td>{producto.total}</td>
+                        <td>{producto.total}</td>
                         <td>{producto.Debido}</td>
                         <td>{producto.Cortesia ? 'Sí' : 'No'}</td>
                         <td><FontAwesomeIcon className='mr-2' icon={faMoneyBill1Wave}/></td>
