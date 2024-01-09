@@ -9,7 +9,7 @@ import logo from "../../assets/logo.png";
 //import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import useDarkMode from "../../service/useDarkMode";
-import authService from "@/service/auth.service";
+import authService from "@/service/auth.service";;
 
 export function Login() {
 
