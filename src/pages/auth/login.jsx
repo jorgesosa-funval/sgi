@@ -23,6 +23,8 @@ export function Login() {
     >
       <div className="w-full abolute h-screen grid place-items-center bg-opacity-20 bg-blue-900 dark:bg-gray-900 dark:bg-opacity-50 transition-all duration-1000 ease-in-out">
         <form
+        // method="POST"
+        // action="http://127.0.0.1:8001/api/authentication"
           onSubmit={handleSubmit}
           className="bg-[#fff5d2] flex flex-col justify-center md:justify-between h-full md:h-fit w-full md:w-96 p-10 md:p-10 border-0 md:border border-gray-400 md:rounded-3xl"
         >

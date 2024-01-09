@@ -89,13 +89,15 @@ export function Compras() {
     console.log(checked);
   };
 
+console.log(comprasAll)
+
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
       <Card>
         <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
           <Typography variant="h6" color="white">
-            Lista de Maestros
-          </Typography>
+            Lista de Compras          
+            </Typography>
         </CardHeader>
         <div className="h-1 mb-5 flex justify-end items-center">
           <div className="w-full">
@@ -108,7 +110,7 @@ export function Compras() {
           <table className="w-full min-w-[640px] table-auto"> 
             <thead>
               <tr>
-                {["check", "fecha", "nro. venta", "proveedor", "estado compra", "total", "pagadao", "debido", "estado de pago", "acciones"].map((el) => (
+                {["check", "fecha", "nro. venta", "proveedor", "cantidad de compra", "total", "acciones"].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-left"
@@ -245,13 +247,28 @@ export function Compras() {
                   onChange={(e) => setCorreo(e.target.value)}
                 />
                 <label>Nombres</label>
-                <input type="text" className="p-2 rounded-lg border border-gray-800" onChange={(e) => setNombre(e.target.value)} defaultValue={nombre} />
+                <input 
+                type="text" 
+                className="p-2 rounded-lg border border-gray-800" 
+                onChange={(e) => setNombre(e.target.value)} defaultValue={nombre} />
                 <label>Apellidos</label>
-                <input type="text" className="p-2 rounded-lg border border-gray-800" onChange={(e) => setApellido(e.target.value)} defaultValue={apellido} />
+                <input 
+                type="text" 
+                className="p-2 rounded-lg border border-gray-800" 
+                onChange={(e) => setApellido(e.target.value)} 
+                />
                 <label>Dirección</label>
-                <input type="text" className="p-2 rounded-lg border border-gray-800" onChange={(e) => setAddress(e.target.value)} defaultValue={address} />
+                <input 
+                type="text" 
+                className="p-2 rounded-lg border border-gray-800" 
+                onChange={(e) => setAddress(e.target.value)} 
+                />
                 <label>Fecha de Nacimiento</label>
-                <input type="date" className="p-2 rounded-lg border border-gray-800" onChange={(e) => convertirFechaOriginal(e.target.value)} defaultValue={formatDate(cumpleanos)} />
+                <input 
+                type="date" 
+                className="p-2 rounded-lg border border-gray-800" 
+                onChange={(e) => convertirFechaOriginal(e.target.value)} 
+                defaultValue={formatDate(cumpleanos)} />
                 <label>Materia Asignada</label>
                 <select
                   className="p-2 rounded-lg border border-gray-800"
@@ -310,7 +327,7 @@ export function Compras() {
               <h3 id="titutlo" className="pb-2 mb-4 border-b-2 text-xl font-medium text-gray-900 dark:text-white px-6 lg:px-8">Confirme su Eliminación</h3>
               <form className="space-y-6 relative px-6 lg:px-8">
                 <label className="block text-lg font-medium text-gray-900 dark:text-white">
-                  ¿Está seguro de que desea Eliminar a {nombre + " " + apellido}<span className="font-extrabold"> </span>?
+                  ¿Está seguro de que desea Eliminar a: <span className="font-extrabold"> </span>?
                 </label>
                 <div id="btn_modal" className="flex justify-end gap-2 mt-4">
                   <button
@@ -364,13 +381,28 @@ export function Compras() {
                   onChange={(e) => setCorreo(e.target.value)}
                 />
                 <label>Nombres</label>
-                <input type="text" className="p-2 rounded-lg border border-gray-800" onChange={(e) => setNombre(e.target.value)} placeholder="Escriba Nombres" />
+                <input 
+                type="text" 
+                className="p-2 rounded-lg border border-gray-800" 
+                onChange={(e) => setNombre(e.target.value)} 
+                placeholder="Escriba Nombres" />
                 <label>Apellidos</label>
-                <input type="text" className="p-2 rounded-lg border border-gray-800" onChange={(e) => setApellido(e.target.value)} placeholder="Escriba Apellidos" />
+                <input 
+                type="text" 
+                className="p-2 rounded-lg border border-gray-800" 
+                onChange={(e) => setApellido(e.target.value)} 
+                placeholder="Escriba Apellidos" />
                 <label>Dirección</label>
-                <input type="text" className="p-2 rounded-lg border border-gray-800" onChange={(e) => setAddress(e.target.value)} placeholder="Escriba su direccion Completa" />
+                <input 
+                type="text" 
+                className="p-2 rounded-lg border border-gray-800" 
+                onChange={(e) => setAddress(e.target.value)} 
+                placeholder="Escriba su direccion Completa" />
                 <label>Fecha de Nacimiento</label>
-                <input type="date" className="p-2 rounded-lg border border-gray-800" onChange={(e) => convertirFechaOriginal(e.target.value)} />
+                <input 
+                type="date" 
+                className="p-2 rounded-lg border border-gray-800" 
+                onChange={(e) => convertirFechaOriginal(e.target.value)} />
                 <label>Materia Asignada</label>
                 <select
                   className="p-2 rounded-lg border border-gray-800"
