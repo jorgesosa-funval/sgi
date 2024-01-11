@@ -12,7 +12,7 @@ import useDarkMode from "../../service/useDarkMode";
 
 export function Login() {
 
-  const { setCorreo, setContrasena, error, handleSubmit, correo, contrasena, rol} = useSgiMarketContext();
+  const { setEmail, setPassword, error, handleSubmit, email, password, rol} = useSgiMarketContext();
   const iconRef = useRef(null);
   const DarkMode = useDarkMode(iconRef);
   sessionStorage.setItem("rol", rol);
@@ -41,8 +41,8 @@ export function Login() {
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               type="email"
               id="correo"
-              value={correo}
-              onChange={(e) => setCorreo(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -52,8 +52,8 @@ export function Login() {
               size="lg"
               placeholder="********"
               id="contrasena"
-              value={contrasena}
-              onChange={(e) => setContrasena(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
@@ -92,9 +92,7 @@ export function Login() {
         </form>
         <div className="hidden w-3/12 lg:block">
         <div className="h-full w-full object-cover p-6 rounded-3xl text-center bg-[#fff5d2]">
-          <li className="flex justify-center">admin@mail.com <p>&#160; PASS: 1234</p></li>
-          <li className="flex justify-center">maestro@mail.com <p>&#160; PASS: 1234</p></li>
-          <li className="flex justify-center">alumno@mail.com<p>&#160; PASS: 1234</p></li>
+          <li className="flex justify-center">admin@mail.com <p>&#160; PASS: password</p></li>
         </div>
       </div>
       </div>

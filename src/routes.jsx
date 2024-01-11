@@ -3,7 +3,7 @@ import {
     TableCellsIcon,
     ServerStackIcon,
 } from "@heroicons/react/24/solid";
-import { Home, Compras, Productos } from "@/pages/dashboard"; //Compras
+import { Home, Compras, Productos, Ventas, AgregarVenta } from "@/pages/dashboard"; //Compras
 import { Login } from "@/pages/auth";
 
 const icon = {
@@ -23,26 +23,33 @@ export const routes = [
                 path: "/home",
                 element: <Home />,
             },
-             {
-               icon: <TableCellsIcon {...icon} />,
-               rol: 1,
-               name: "productos",
-               path: "/produtos",
-               element: <Productos />,
-             },
-            // {
-            //   icon: <TableCellsIcon {...icon} />,
-            //   rol: 2,
-            //   name: "ventas",
-            //   path: "/ventas",
-            //   element: <Ventas />,
-            // },
+            {
+                icon: <TableCellsIcon {...icon} />,
+                rol: 1,
+                name: "productos",
+                path: "/produtos",
+                element: <Productos />,
+            },
             {
                 icon: <TableCellsIcon {...icon} />,
                 rol: rolSeccion,
                 name: "compras",
                 path: "/compras",
                 element: <Compras />,
+            },
+            {
+                icon: <TableCellsIcon {...icon} />,
+                rol: rolSeccion,
+                name: "ventas",
+                path: "/ventas",
+                element: <Ventas />,
+            },
+            {
+                icon: <TableCellsIcon {...icon} />,
+                rol: rolSeccion,
+                name: "Agregar Ventas",
+                path: "/agregarventa",
+                element: <AgregarVenta />,
             },
             // {
             //   icon: <TableCellsIcon {...icon} />,

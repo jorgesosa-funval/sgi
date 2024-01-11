@@ -23,8 +23,7 @@ export function Dashboard() {
   const navigate = useNavigate();
   let seccionClose = "Sección inválida."
   let seccionExp = "Sección Caducada."
-  let seccionRol = "Sin rol Asignado."
-  let condicion = "Sin Autorización"
+  let seccionInval = "Unauthenticated."
   const body = document.body;
 
   if (!token) {
@@ -33,11 +32,9 @@ export function Dashboard() {
     navigate("/auth/login");
   } else if (seccionExp === seccion) {
     navigate("/auth/login");
-  } else if (seccionRol === seccion) {
+  } else if (seccionInval === seccion) {
     navigate("/auth/login");
-  } else if (condicion === seccion) {
-    navigate("/auth/login");
-  }
+  } 
 
   if (sidenavType === "white") {
     body.classList.remove("dark");

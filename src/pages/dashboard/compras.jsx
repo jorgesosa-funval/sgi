@@ -37,11 +37,11 @@ export function Compras() {
   let update = "maestros";
 
   // funcion para editar con fetch
-  const editMaestro = async () => {
+  const editCompra = async () => {
 
-    const res = await fetch("http://localhost:3000/backend/dashboard/teachers/edit", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify({ token, update, id_user, correo, nombre, apellido, address, cumpleanos, asignancion }), })
-    const data = await res.json();
-    setRespuesta(data);
+    // const res = await fetch("http://localhost:3000/backend/dashboard/teachers/edit", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify({ token, update, id_user, correo, nombre, apellido, address, cumpleanos, asignancion }), })
+    // const data = await res.json();
+    // setRespuesta(data);
     setTimeout(() => {
       setRespuesta('');
     }, 2000);
@@ -89,7 +89,7 @@ export function Compras() {
     console.log(checked);
   };
 
-console.log(comprasAll)
+//console.log(datos);
 
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
@@ -196,13 +196,17 @@ console.log(comprasAll)
                             </IconButton>
                           </MenuHandler>
                           <MenuList>
-                            <MenuItem>Editar Datos</MenuItem>
+                            <MenuItem
+                             onClick={() => {
+                              setModalMaestro(true);
+                            }}
+                            >Editar Datos</MenuItem>
                             <MenuItem
                               onClick={() => {
                                 // setId_user(id_user);
                                 // setNombre(nombre);
                                 // setApellido(apellido);
-                                // setModalDelete(true);
+                                 setModalDelete(true);
                               }}
                             >Eliminarlo</MenuItem>
                           </MenuList>
@@ -239,40 +243,41 @@ console.log(comprasAll)
                     Modifica los Datos aqui, por favor.
                   </p>
                 </div>
-                <label>Correo Electronico</label>
-                <input
-                  type="email"
-                  className="p-2 rounded-lg border border-gray-800"
-                  defaultValue={correo}
-                  onChange={(e) => setCorreo(e.target.value)}
-                />
-                <label>Nombres</label>
-                <input 
-                type="text" 
-                className="p-2 rounded-lg border border-gray-800" 
-                onChange={(e) => setNombre(e.target.value)} defaultValue={nombre} />
-                <label>Apellidos</label>
-                <input 
-                type="text" 
-                className="p-2 rounded-lg border border-gray-800" 
-                onChange={(e) => setApellido(e.target.value)} 
-                />
-                <label>Dirección</label>
-                <input 
-                type="text" 
-                className="p-2 rounded-lg border border-gray-800" 
-                onChange={(e) => setAddress(e.target.value)} 
-                />
-                <label>Fecha de Nacimiento</label>
+                <label>Fecha</label>
                 <input 
                 type="date" 
                 className="p-2 rounded-lg border border-gray-800" 
-                onChange={(e) => convertirFechaOriginal(e.target.value)} 
-                defaultValue={formatDate(cumpleanos)} />
-                <label>Materia Asignada</label>
-                <select
+                //onChange={(e) => convertirFechaOriginal(e.target.value)} 
+                defaultValue={formatDate('1994-01-12')} />
+                <label>Nro. Venta</label>
+                <input 
+                type="number" 
+                className="p-2 rounded-lg border border-gray-800" 
+                //onChange={(e) => setNombre(e.target.value)} 
+                defaultValue="Nombre" 
+                />
+                <label>Proveedor</label>
+                <input 
+                type="text" 
+                className="p-2 rounded-lg border border-gray-800" 
+                //onChange={(e) => setApellido(e.target.value)} 
+                />
+                <label>Cantidad de Compras</label>
+                <input 
+                type="number" 
+                className="p-2 rounded-lg border border-gray-800" 
+                //onChange={(e) => setAddress(e.target.value)} 
+                />
+                <label>Total</label>
+                <input 
+                type="number" 
+                className="p-2 rounded-lg border border-gray-800" 
+                //onChange={(e) => setAddress(e.target.value)} 
+                />
+                {/* <label>Materia Asignada</label> */}
+                {/* <select
                   className="p-2 rounded-lg border border-gray-800"
-                  defaultValue={materiaAsign}
+                  defaultValue="Seleccionador"
                   onChange={(e) => {
                     const selectedMateria = clases.find((materia) => materia.name_materia === e.target.value);
                     setMateriaAsign(selectedMateria ? selectedMateria.name_materia : "null");
@@ -288,9 +293,12 @@ console.log(comprasAll)
                     </option>
                   ))}
                   <option>DEJAR SIN MATERIA</option>
-                </select>
+                </select> */}
                 <div className="flex mt-6 mb-6 flex-col gap-6">
-                  <p className="text-center mt-4 text-green-600 text-sm">{respuesta?.error && <p>{respuesta?.error}</p>}</p>
+                  <p className="text-center mt-4 text-green-600 text-sm">
+                    los errores
+                    {/* {respuesta?.error && <p>{respuesta?.error}</p>} */}
+                  </p>
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                   <button
@@ -304,7 +312,7 @@ console.log(comprasAll)
                   <button
                     className="bg-gray-900 text-gray-100 active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={editMaestro}
+                    onClick={editCompra}
                   >
                     Guardar Cambios
                   </button>

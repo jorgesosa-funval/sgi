@@ -7,63 +7,71 @@ export const useSgiMarketContext = () => useContext(SgiMarketContext);
 export const SGIProvider = ({ children }) => {
   //const PORT = process.env.PORT ?? 5500;
   const [rol, setRol] = useState(null);
-  const [correo, setCorreo] = useState("");
-  const [contrasena, setContrasena] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [seccion, setSeccion] = useState("");
   const [comprasAll, setComprasAll] = useState("");
+  const [datos, setDatos] = useState([]);
   const token = localStorage.getItem("token");
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/backend/login", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify({ correo, contrasena }), })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            if (res.status === 401) {
-              throw new Error(data.passIncorrecto);
-            }
-            if (res.status === 404) {
-              throw new Error(data.userInvalido);
-            }
-            throw new Error("Ocurrió un error al iniciar sesión");
-          });
-        }
+    try {
+      const auth = await fetch("http://127.0.0.1:8001/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", },
+        body: JSON.stringify({ email, password }),
       })
-      .then((data) => {
-        setSeccion(data.error);
-        setError(data.error);
+      const data = await auth.json();
+      if (auth.ok) {
         localStorage.setItem("token", data.token);
-        setRol(parseInt(data?.rol, 10));
+        setRol(parseInt(data.rol, 10));
         sessionStorage.setItem("rol", data.rol);
-        if (data.error !== 'Sin Autorización') {
-          window.location.href = `/dashboard`; //http://127.0.0.1:5500:${PORT}
+        if (data.message !== 'unauthorized') {
+          window.location.href = `${data.redirected}`;
           sessionStorage.setItem("rol", data.rol);
         }
-      })
-      .catch((err) => {
-        setError(err.message);
-      })
-      .catch((err) => {
-        setError(err.message);
-      });
-  };
+      } else if (auth.status === 401) {
+        setError(data.mensaje);
+        setSeccion(data.mensaje);
+
+      } else if (auth.status === 404) {
+        setError(data.mensaje);
+        setSeccion(data.mensaje);
+      } else if (auth.status === 500) {
+        setError(data.mensaje);
+        setSeccion(data.mensaje);
+      } else {
+        throw new Error(auth.status);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError("Ocurrió un error al iniciar sesión");
+      setSeccion("Ocurrió un error al iniciar sesión");
+    }
+  }
 
   useEffect(() => {
 
     const datosDashboard = async () => {
 
-      const res = await fetch("http://127.0.0.1:8001/api/compras", { method: "GET" })
+      const res = await fetch("http://127.0.0.1:8001/api/compras", { method: "GET", headers: { Authorization: `Bearer ${token}`, }, })
       const data1 = await res.json();
-      //sessionStorage.setItem("rol", 1)
       setComprasAll(data1);
+      if (res.status === 401) {
+        setSeccion(data1?.message);
+      }
+      const response = await fetch('http://127.0.0.1:8001/api/productosventas', { method: "GET", headers: { Authorization: `Bearer ${token}`, }, });
+      const data = await response.json();
+      setDatos(data);
+      if (response.status === 401) {
+        setSeccion(data?.message);
+      }
     }
 
-    //datosDashboard();
-
+    datosDashboard();
     const intervalId = setInterval(datosDashboard, 1000);
     return () => clearInterval(intervalId);
 
@@ -71,13 +79,14 @@ export const SGIProvider = ({ children }) => {
 
   const contextValue = {
     seccion,
-    setCorreo,
-    contrasena,
+    setEmail,
+    password,
     handleSubmit,
     error,
-    setContrasena,
+    setPassword,
     comprasAll,
-    correo,
+    email,
+    datos,
     rol,
   };
 
